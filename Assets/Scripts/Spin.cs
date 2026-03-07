@@ -1,6 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spin : MonoBehaviour
 {
@@ -10,9 +11,31 @@ public class Spin : MonoBehaviour
     public bool canSpin = true;
     public GameObject BG1;
     public GameObject BG2;
+    public Slider BetSlider;
+    public TMP_Text BetText;
+    public int BetAmount;
+    public int Money;
+    public TMP_Text MoneyText;
+    public bool canBet  = true;
+
+    void Start()
+    {
+        canBet  = true;
+    }
+
+    void Update()
+    {
+        BetSlider.maxValue = Money;
+        if (canBet)
+        {
+            BetAmount = (int)BetSlider.value;
+        }
+        BetText.text = BetAmount.ToString();
+        MoneyText.text = Money.ToString();
+    }
     public void Spinning()
     {
-        if (canSpin)
+        if (canSpin && BetAmount != 0 && spinSet != 0   )
         {
             spin = Random.Range(1, 3);
             Debug.Log(spin);
@@ -29,6 +52,7 @@ public class Spin : MonoBehaviour
             }
             StartCoroutine(Wait2());
             StartCoroutine(Wait());
+            canBet = false;
         }
     }
 
@@ -43,8 +67,9 @@ public class Spin : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
         animator.SetTrigger("SetBack");
+        canBet = true;
     }
     IEnumerator Wait2()
     {
@@ -52,10 +77,12 @@ public class Spin : MonoBehaviour
         if (spinSet == spin)
         {
             Debug.Log("You Won");
+            Money += BetAmount * 2;
         }
         else
         {
             Debug.Log("You Lose");
+            Money -= BetAmount;
         }
     }
 

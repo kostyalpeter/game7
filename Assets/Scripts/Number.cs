@@ -1,0 +1,87 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Number : MonoBehaviour
+{
+    public int Num1;
+    public int Num2;
+    public int Num3;
+    public int Num4;
+    public int Num5;
+    public int Num6;
+    public int Bet1;
+    public int Bet2;
+    public int Bet3;
+    public int Bet4;
+    public int Bet5;
+    public int Bet6;
+    public Slider Slider1;
+    public Slider Slider2;
+    public Slider Slider3;
+    public Slider Slider4;
+    public Slider Slider5;
+    public Slider Slider6;
+    public TMP_Text Text1;
+    public TMP_Text Text2;
+    public TMP_Text Text3;
+    public TMP_Text Text4;
+    public TMP_Text Text5;
+    public TMP_Text Text6;
+    void Start()
+    {
+        RandomNumber();
+    }
+
+    void Update()
+    {
+        Bet1 = (int)Slider1.value;
+        Bet2 = (int)Slider2.value;
+        Bet3 = (int)Slider3.value;
+        Bet4 = (int)Slider4.value;
+        Bet5 = (int)Slider5.value;
+        Bet6 = (int)Slider6.value;
+
+        Slider1.minValue = 1;
+        Slider1.maxValue = 49;
+        Slider2.minValue = 1;
+        Slider2.maxValue = 49;
+        Slider3.minValue = 1;
+        Slider3.maxValue = 49;
+        Slider4.minValue = 1;
+        Slider4.maxValue = 49;
+        Slider5.minValue = 1;
+        Slider5.maxValue = 49;
+        Slider6.minValue = 1;
+        Slider6.maxValue = 49;
+
+        Text1.text = Bet1.ToString();
+        Text2.text = Bet2.ToString();
+        Text3.text = Bet3.ToString();
+        Text4.text = Bet4.ToString();
+        Text5.text = Bet5.ToString();
+        Text6.text = Bet6.ToString();
+    }
+    public void RandomNumber()
+    {
+        Num1 = Random.Range(1, 50);
+        Num2 = Random.Range(1, 50);
+        Num3 = Random.Range(1, 50);
+        Num4 = Random.Range(1, 50);
+        Num5 = Random.Range(1, 50);
+        Num6 = Random.Range(1, 50);
+        Debug.Log(Num1);
+        Debug.Log(Num2);
+        Debug.Log(Num3);
+        Debug.Log(Num4);
+        Debug.Log(Num5);
+        Debug.Log(Num6);
+    }
+    public void SendNumbers()
+    {
+        if(Num1 == Bet1 && Num2 == Bet2 && Num3 == Bet3 && Num4 == Bet4 && Num5 == Bet5 && Num6 == Bet6)
+        {
+            Debug.Log("Win");
+        }
+    }
+}
