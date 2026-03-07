@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,31 +82,25 @@ public class Number : MonoBehaviour
     }
     public void SendNumbers()
     {
-        if (Num1 == Bet1 || Num2 == Bet1 || Num3 == Bet1 || Num4 == Bet1 || Num5 == Bet1 || Num6 == Bet1)
+        if (Spin.Money >= 500)
         {
-            Correct += 1;
+            Spin.Money -= 500;
+
+            int[] drawnNumbers = { Num1, Num2, Num3, Num4, Num5, Num6 };
+            int[] bets = { Bet1, Bet2, Bet3, Bet4, Bet5, Bet6 };
+            Correct = 0;
+            List<int> checkedNumbers = new List<int>();
+
+            foreach (int bet in bets)
+            {
+                if (drawnNumbers.Contains(bet) && !checkedNumbers.Contains(bet))
+                {
+                    Correct += 1;
+                    checkedNumbers.Add(bet);
+                }
+            }
+            End();
         }
-        if (Num1 == Bet2 || Num2 == Bet2 || Num3 == Bet2 || Num4 == Bet2 || Num5 == Bet2 || Num6 == Bet2)
-        {
-            Correct += 1;
-        }
-        if (Num1 == Bet3 || Num2 == Bet3 || Num3 == Bet3 || Num4 == Bet3 || Num5 == Bet3 || Num6 == Bet3)
-        {
-            Correct += 1;
-        }
-        if (Num1 == Bet4 || Num2 == Bet4 || Num3 == Bet4 || Num4 == Bet4 || Num5 == Bet4 || Num6 == Bet4)
-        {
-            Correct += 1;
-        }
-        if (Num1 == Bet5 || Num2 == Bet5 || Num3 == Bet5 || Num4 == Bet5 || Num5 == Bet5 || Num6 == Bet5)
-        {
-            Correct += 1;
-        }
-        if (Num1 == Bet6 || Num2 == Bet6 || Num3 == Bet6 || Num4 == Bet6 || Num5 == Bet6 || Num6 == Bet6)
-        {
-            Correct += 1;
-        }
-        End();
     }
 
     void End()
@@ -113,31 +109,37 @@ public class Number : MonoBehaviour
         {
             Debug.Log("Win1");
             Correct = 0;
+            Spin.Money += 5000;
         }
         if (Correct == 2)
         {
             Debug.Log("Win2");
             Correct = 0;
+            Spin.Money += 25000;
         }
         if (Correct == 3)
         {
             Debug.Log("Win3");
             Correct = 0;
+            Spin.Money += 100000;
         }
         if (Correct == 4)
         {
             Debug.Log("Win4");
             Correct = 0;
+            Spin.Money += 500000;
         }
         if (Correct == 5)
         {
             Debug.Log("Win5");
             Correct = 0;
+            Spin.Money += 10000000;
         }
         if (Correct == 6)
         {
             Debug.Log("Win6");
             Correct = 0;
+            Spin.Money += 100000000;
         }
         RandomNumber();
     }

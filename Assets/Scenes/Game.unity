@@ -497,13 +497,12 @@ GameObject:
   - component: {fileID: 1801808599}
   - component: {fileID: 1801808598}
   - component: {fileID: 1801808601}
-  - component: {fileID: 1801808600}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &1801808598
 SpriteRenderer:
@@ -578,19 +577,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1801808600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801808597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba62e225e91df747b13b50d8e2bf14b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OnClick
-  speed: 1
 --- !u!58 &1801808601
 CircleCollider2D:
   m_ObjectHideFlags: 0

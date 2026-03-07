@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0f);
         GameObject ButtonClone = Instantiate(Button, spawnPos, Quaternion.identity);
+        ButtonClone.AddComponent<OnClick>();
         StartCoroutine(Wait());
     }
 

@@ -1,13 +1,13 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class OnClick : MonoBehaviour
 {
-    public float speed;
+    float lifetime = 2f;
     void Start()
     {
-        StartCoroutine(Wait());
+        Debug.Log("Missed!");
+        Destroy(gameObject, lifetime);
     }
     void Update()
     {
@@ -21,13 +21,8 @@ public class OnClick : MonoBehaviour
             {
                 Debug.Log("Clicked!");
                 Destroy(gameObject);
+                Spin.Money += 1;
             }
         }
-    }
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(speed);
-        Debug.Log("Missed!");
-        Destroy(gameObject);
     }
 }

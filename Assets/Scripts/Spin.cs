@@ -14,7 +14,7 @@ public class Spin : MonoBehaviour
     public Slider BetSlider;
     public TMP_Text BetText;
     public int BetAmount;
-    public int Money;
+    public static int Money;
     public TMP_Text MoneyText;
     public bool canBet  = true;
 
@@ -98,6 +98,9 @@ public class Spin : MonoBehaviour
         BG2.SetActive(true);
         BG1.SetActive(false);
     }
+
+    public void AddMoney()
+    {
+        Money += 1000;
+    }
 }
-
-
