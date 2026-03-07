@@ -28,6 +28,7 @@ public class Number : MonoBehaviour
     public TMP_Text Text4;
     public TMP_Text Text5;
     public TMP_Text Text6;
+    public int Correct;
     void Start()
     {
         RandomNumber();
@@ -79,9 +80,66 @@ public class Number : MonoBehaviour
     }
     public void SendNumbers()
     {
-        if(Num1 == Bet1 && Num2 == Bet2 && Num3 == Bet3 && Num4 == Bet4 && Num5 == Bet5 && Num6 == Bet6)
+        if (Num1 == Bet1 || Num2 == Bet1 || Num3 == Bet1 || Num4 == Bet1 || Num5 == Bet1 || Num6 == Bet1)
         {
-            Debug.Log("Win");
+            Correct += 1;
         }
+        if (Num1 == Bet2 || Num2 == Bet2 || Num3 == Bet2 || Num4 == Bet2 || Num5 == Bet2 || Num6 == Bet2)
+        {
+            Correct += 1;
+        }
+        if (Num1 == Bet3 || Num2 == Bet3 || Num3 == Bet3 || Num4 == Bet3 || Num5 == Bet3 || Num6 == Bet3)
+        {
+            Correct += 1;
+        }
+        if (Num1 == Bet4 || Num2 == Bet4 || Num3 == Bet4 || Num4 == Bet4 || Num5 == Bet4 || Num6 == Bet4)
+        {
+            Correct += 1;
+        }
+        if (Num1 == Bet5 || Num2 == Bet5 || Num3 == Bet5 || Num4 == Bet5 || Num5 == Bet5 || Num6 == Bet5)
+        {
+            Correct += 1;
+        }
+        if (Num1 == Bet6 || Num2 == Bet6 || Num3 == Bet6 || Num4 == Bet6 || Num5 == Bet6 || Num6 == Bet6)
+        {
+            Correct += 1;
+        }
+        End();
     }
+
+    void End()
+    {
+        if (Correct == 1)
+        {
+            Debug.Log("Win1");
+            Correct = 0;
+        }
+        if (Correct == 2)
+        {
+            Debug.Log("Win2");
+            Correct = 0;
+        }
+        if (Correct == 3)
+        {
+            Debug.Log("Win3");
+            Correct = 0;
+        }
+        if (Correct == 4)
+        {
+            Debug.Log("Win4");
+            Correct = 0;
+        }
+        if (Correct == 5)
+        {
+            Debug.Log("Win5");
+            Correct = 0;
+        }
+        if (Correct == 6)
+        {
+            Debug.Log("Win6");
+            Correct = 0;
+        }
+        RandomNumber();
+    }
+
 }
