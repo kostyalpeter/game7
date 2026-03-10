@@ -1,13 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class OnClick : MonoBehaviour
 {
-    float lifetime = 2f;
+    public static float lifetime = 2f;
     void Start()
     {
-        Debug.Log("Missed!");
-        Destroy(gameObject, lifetime);
+        StartCoroutine(Wait());
     }
     void Update()
     {
@@ -23,6 +23,17 @@ public class OnClick : MonoBehaviour
                 Destroy(gameObject);
                 Spin.Money += 1;
             }
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Debug.Log("Missed!");
+        Destroy(gameObject);
+        if (Spin.Money > 0)
+        {
+            Spin.Money -= 1;
         }
     }
 }
