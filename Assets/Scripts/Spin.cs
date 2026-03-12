@@ -13,8 +13,8 @@ public class Spin : MonoBehaviour
     public GameObject BG2;
     public Slider BetSlider;
     public TMP_Text BetText;
-    public int BetAmount;
-    public static int Money;
+    public float BetAmount;
+    public static float Money;
     public TMP_Text MoneyText;
     public bool canBet  = true;
 
@@ -28,10 +28,10 @@ public class Spin : MonoBehaviour
         BetSlider.maxValue = Money;
         if (canBet)
         {
-            BetAmount = (int)BetSlider.value;
+            BetAmount = (float)BetSlider.value;
         }
-        BetText.text = BetAmount.ToString();
-        MoneyText.text = Money.ToString();
+        BetText.text = BetAmount.ToString("0,0");
+        MoneyText.text = Money.ToString("0,0");
     }
     public void Spinning()
     {
@@ -77,7 +77,7 @@ public class Spin : MonoBehaviour
         if (spinSet == spin)
         {
             Debug.Log("You Won");
-            Money += BetAmount * 2;
+            Money += BetAmount;
         }
         else
         {

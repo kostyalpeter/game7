@@ -127,19 +127,19 @@ public class Number : MonoBehaviour
         {
             Debug.Log("Win4");
             Correct = 0;
-            Spin.Money += 500000;
+            Spin.Money += 1000000;
         }
         if (Correct == 5)
         {
             Debug.Log("Win5");
             Correct = 0;
-            Spin.Money += 10000000;
+            Spin.Money += 250000000;
         }
         if (Correct == 6)
         {
             Debug.Log("Win6");
             Correct = 0;
-            Spin.Money += 100000000;
+            Spin.Money += 1000000000;
         }
         RandomNumber();
     }
