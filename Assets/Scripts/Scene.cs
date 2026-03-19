@@ -5,7 +5,10 @@ public class Scene : MonoBehaviour
 {
     public void Game()
     {
-        SceneManager.LoadScene("Game");
+        if (Spin.canPlay)
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
     public void Gamble()
     {

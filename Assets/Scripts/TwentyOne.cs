@@ -14,11 +14,13 @@ public class TwentyOne : MonoBehaviour
     public float BetAmount;
     [SerializeField] bool canAdd = true;
     [SerializeField] bool canGuess;
+    [SerializeField] bool canStop;
 
     void Start()
     {
         canAdd = true;
         canGuess = false;
+        canStop = false;
     }
 
     void Update()
@@ -36,16 +38,19 @@ public class TwentyOne : MonoBehaviour
         if (canGuess)
         {
             Number += Random.Range(1, 12);
+            canStop = true;
+            Spin.canPlay = false;
         }
     }
 
     public void NumberAdd()
     {
-        if (canAdd)
+        if (canAdd && BetAmount != 0)
         {
             Number2 = Random.Range(1, 22);
             canAdd = false;
             canGuess = true;
+            Spin.canPlay = false;
         }
     }
 
@@ -58,6 +63,7 @@ public class TwentyOne : MonoBehaviour
         canAdd = true;
         canGuess = true;
         Slider1.gameObject.SetActive(true);
+        Spin.canPlay = true;
     }
     IEnumerator Wait2()
     {
@@ -68,22 +74,28 @@ public class TwentyOne : MonoBehaviour
         canAdd = true;
         canGuess = true;
         Slider1.gameObject.SetActive(true);
+        Spin.canPlay = true;
     }
     public void Stop()
     {
-        canGuess = false;
-
-        if (21 - Number >= 21 - Number2 && Number != 0 && Number2 != 0 || Number > 21)
+        if (canStop)
         {
-            Debug.Log("Lose");
-            StartCoroutine(Wait());
-        }
+            canGuess = false;
 
-        if (21 - Number < 21 - Number2 && Number != 0 && Number2 != 0)
-        {
-            Debug.Log("Win");
-            StartCoroutine(Wait2());
+            if (21 - Number >= 21 - Number2 && Number != 0 && Number2 != 0 || Number > 21)
+            {
+                Debug.Log("Lose");
+                StartCoroutine(Wait());
+            }
+
+            if (21 - Number < 21 - Number2 && Number != 0 && Number2 != 0)
+            {
+                Debug.Log("Win");
+                StartCoroutine(Wait2());
+            }
+            Slider1.gameObject.SetActive(false);
+            canStop = false;
+            Spin.canPlay = false;
         }
-        Slider1.gameObject.SetActive(false);
     }
 }

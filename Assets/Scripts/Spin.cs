@@ -16,11 +16,15 @@ public class Spin : MonoBehaviour
     public float BetAmount;
     public static float Money;
     public TMP_Text MoneyText;
-    public bool canBet  = true;
+    public bool canBet = true;
+    public static bool canPlay;
+    Sounds sounds;
 
     void Start()
     {
-        canBet  = true;
+        canBet = true;
+        canPlay = true;
+        sounds = GetComponent<Sounds>();
     }
 
     void Update()
@@ -35,7 +39,7 @@ public class Spin : MonoBehaviour
     }
     public void Spinning()
     {
-        if (canSpin && BetAmount != 0 && spinSet != 0   )
+        if (canSpin && BetAmount != 0 && spinSet != 0)
         {
             spin = Random.Range(1, 3);
             Debug.Log(spin);
@@ -44,15 +48,18 @@ public class Spin : MonoBehaviour
             {
                 animator.SetTrigger("Spin1");
                 Debug.Log("spin1");
+                sounds.Spinning();
             }
             else if (spin == 2 && canSpin)
             {
                 animator.SetTrigger("Spin2");
                 Debug.Log("spin2");
+                sounds.Spinning();
             }
             StartCoroutine(Wait2());
             StartCoroutine(Wait());
             canBet = false;
+            canPlay = false;
         }
     }
 
@@ -78,11 +85,15 @@ public class Spin : MonoBehaviour
         {
             Debug.Log("You Won");
             Money += BetAmount;
+            sounds.StopSpinning();
+            canPlay = true;
         }
         else
         {
             Debug.Log("You Lose");
             Money -= BetAmount;
+            sounds.StopSpinning();
+            canPlay = true;
         }
     }
 
